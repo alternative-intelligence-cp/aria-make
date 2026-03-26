@@ -122,7 +122,7 @@ public:
 
 private:
     std::string compiler_path_;  // Path to gcc/clang/g++/clang++
-    bool is_cpp_;                // C++ mode vs C mode
+    [[maybe_unused]] bool is_cpp_;  // C++ mode vs C mode (reserved for future use)
     
     /**
      * Build command-line arguments from CompileTask

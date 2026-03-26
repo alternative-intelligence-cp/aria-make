@@ -12,7 +12,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 project(aria_make
-    VERSION 0.1.0
+    VERSION 0.2.15
     DESCRIPTION "Build System for Aria Language"
     LANGUAGES CXX
 )
@@ -100,30 +100,44 @@ endif()
 
 # -----------------------------------------------------------------------------
 # Library: aria_make_glob (Glob bridge component)
+# Only build with full aglob when available; otherwise provide a stub
 # -----------------------------------------------------------------------------
-add_library(aria_make_glob STATIC
-    src/glob/glob_bridge.cpp
-)
-
-target_include_directories(aria_make_glob
-    PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
-)
-
 if(AGLOB_FOUND)
+    add_library(aria_make_glob STATIC
+        src/glob/glob_bridge.cpp
+    )
+
+    target_include_directories(aria_make_glob
+        PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+    )
+
     # Add aglob subdirectory if not already built
     if(NOT TARGET aglob)
         add_subdirectory(${AGLOB_ROOT} ${CMAKE_BINARY_DIR}/aglob EXCLUDE_FROM_ALL)
     endif()
     target_link_libraries(aria_make_glob PUBLIC aglob)
     target_compile_definitions(aria_make_glob PRIVATE ARIA_MAKE_HAS_AGLOB=1)
+else()
+    # Fallback glob using std::filesystem
+    add_library(aria_make_glob STATIC
+        src/glob/glob_bridge_fallback.cpp
+    )
+
+    target_include_directories(aria_make_glob
+        PUBLIC
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+            $<INSTALL_INTERFACE:include>
+    )
 endif()
 
+if(AGLOB_FOUND)
 set_target_properties(aria_make_glob PROPERTIES
     VERSION ${PROJECT_VERSION}
     POSITION_INDEPENDENT_CODE ON
 )
+endif()
 
 # -----------------------------------------------------------------------------
 # Library: aria_make_compiler (Compiler Interface component)

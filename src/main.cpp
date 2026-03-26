@@ -45,9 +45,9 @@ using namespace aria::make;
 // -----------------------------------------------------------------------------
 
 void print_version() {
-    std::cout << "aria_make 0.1.0\n";
+    std::cout << "aria_make 0.2.15\n";
     std::cout << "Aria Build System\n";
-    std::cout << "Copyright (c) 2025 Aria Language Project\n";
+    std::cout << "Copyright (c) 2025-2026 Aria Language Project\n";
 }
 
 void print_help() {

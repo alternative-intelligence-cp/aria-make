@@ -1,7 +1,7 @@
 # aria_make Status
 
-**Last Updated**: 2025-12-24  
-**Version**: 0.0.1-dev
+**Last Updated**: 2026-03-26  
+**Version**: 0.2.15
 
 ---
 
@@ -44,12 +44,12 @@
 
 ## Planned 📋
 
-### Phase 1: Core Build System
-- [ ] Integration with ariac compiler
-- [ ] Multi-file project builds
-- [ ] Incremental compilation support
-- [ ] Dependency resolution
-- [ ] Build caching
+### Phase 1: Core Build System ✅
+- [x] Integration with ariac compiler
+- [x] Multi-file project builds
+- [x] Incremental compilation support
+- [x] Dependency resolution
+- [x] Build caching
 
 ### Phase 2: Package Management
 - [ ] Package manifest format
@@ -82,11 +82,12 @@
 
 | Component | Coverage | Notes |
 |-----------|----------|-------|
-| Project Init | 0% | Tests needed |
-| Build System | 0% | Tests needed |
-| Dependency Resolution | 0% | Tests needed |
+| StateManager | 100% | 12/12 tests passing |
+| ABC Parser | 0% | Tests needed |
+| Build Orchestrator | Manual | test_project and test_project_ffi |
+| Glob Bridge | 0% | Fallback implementation working |
 
-**Overall Test Coverage**: ~0%
+**Overall Test Coverage**: ~30% (StateManager fully tested, others manual)
 
 ---
 
