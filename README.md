@@ -1,5 +1,8 @@
 # aria_make
 
+[![CI](https://github.com/alternative-intelligence-cp/aria-make/actions/workflows/ci.yml/badge.svg)](https://github.com/alternative-intelligence-cp/aria-make/actions/workflows/ci.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
 **Build System for Aria Language**
 
 Fast, incremental build system with intelligent dependency tracking and full FFI support.
