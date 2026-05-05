@@ -212,7 +212,7 @@ add_executable(aria_make
 target_link_libraries(aria_make PRIVATE aria_make_core)
 
 set_target_properties(aria_make PROPERTIES
-    OUTPUT_NAME "aria_make"
+    OUTPUT_NAME "npkbld"
 )
 
 # -----------------------------------------------------------------------------

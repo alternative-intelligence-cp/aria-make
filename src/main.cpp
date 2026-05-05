@@ -45,17 +45,17 @@ using namespace aria::make;
 // -----------------------------------------------------------------------------
 
 void print_version() {
-    std::cout << "aria_make 0.2.15\n";
-    std::cout << "Aria Build System\n";
-    std::cout << "Copyright (c) 2025-2026 Aria Language Project\n";
+    std::cout << "npkbld 0.2.15\n";
+    std::cout << "Nitpick Build System\n";
+    std::cout << "Copyright (c) 2025-2026 Nitpick Language Project\n";
 }
 
 void print_help() {
     std::cout << R"(
-aria_make - Aria Build System
+npkbld - Nitpick Build System
 
 USAGE:
-    aria_make [COMMAND] [OPTIONS] [TARGETS...]
+    npkbld [COMMAND] [OPTIONS] [TARGETS...]
 
 COMMANDS:
     build       Build the project (default if no command given)
@@ -64,7 +64,7 @@ COMMANDS:
     check       Show what would be built (dry run)
     targets     List all available targets
     deps        Show dependency graph in DOT format
-    test        Build and run test files (test_*.aria, *_test.aria)
+    test        Build and run test files (test_*.npk, *_test.npk, test_*.aria, *_test.aria)
 
 OPTIONS:
     -C <dir>        Change to directory before building
@@ -81,14 +81,14 @@ OPTIONS:
     --version       Show version information
 
 EXAMPLES:
-    aria_make                       Build all targets
-    aria_make build                 Same as above
-    aria_make -j4                   Build with 4 parallel jobs
-    aria_make -C /path/to/project   Build project in another directory
-    aria_make --force               Rebuild everything
-    aria_make clean                 Remove build artifacts
-    aria_make targets               List all build targets
-    aria_make deps > graph.dot      Export dependency graph
+    npkbld                       Build all targets
+    npkbld build                 Same as above
+    npkbld -j4                   Build with 4 parallel jobs
+    npkbld -C /path/to/project   Build project in another directory
+    npkbld --force               Rebuild everything
+    npkbld clean                 Remove build artifacts
+    npkbld targets               List all build targets
+    npkbld deps > graph.dot      Export dependency graph
 
 BUILD FILE FORMAT (build.abc):
     [project]
