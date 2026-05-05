@@ -1,4 +1,4 @@
-# aria_make
+# npkbld (aria_make)
 
 <p align="center">
     <img src="assets/nitpick_logo.png" alt="Nitpick logo: raccoon holding a magnifying glass" width="220">
@@ -8,9 +8,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
 > 🚧 **Rebrand in progress:** Aria is becoming **Nitpick**. This build-system
-> repo still uses Aria names while the migration is underway. The future build
-> command name is still being finalized (`npkb` / `npkbld` are the current
-> candidates), and compatibility aliases should be preserved during transition.
+> repo still uses Aria names while the migration is underway. The build command is now **`npkbld`** (`aria_make` remains a compat alias during transition).
 
 **Build System for Aria Language**
 
@@ -35,12 +33,12 @@ name = "myproject"
 version = "0.1.0"
 
 [compiler]
-path = "/path/to/ariac"
+path = "/path/to/npkc"
 
 # Aria binary target
 [target.myapp]
 type = "binary"
-sources = ["src/*.aria"]
+sources = ["src/*.npk"]
 flags = ["-O2"]
 deps = []
 
@@ -55,7 +53,7 @@ output = "libmylib.a"
 # Aria binary using FFI
 [target.app_with_ffi]
 type = "binary"
-sources = ["src/main.aria"]
+sources = ["src/main.npk"]
 deps = ["mylib"]
 link_libraries = ["mylib", "m"]
 link_paths = [".aria_make/build"]
@@ -66,19 +64,19 @@ flags = ["-O2"]
 
 ```bash
 # Build all targets
-aria_make
+npkbld
 
 # Build specific target
-aria_make myapp
+npkbld myapp
 
 # Verbose output
-aria_make -v
+npkbld -v
 
 # Force rebuild
-aria_make --force
+npkbld --force
 
 # Clean build artifacts
-aria_make --clean
+npkbld --clean
 ```
 
 ## FFI Example
@@ -93,9 +91,9 @@ double aria_sqrt(double x) {
 }
 ```
 
-### Aria Code (`src/main.aria`)
+### Nitpick Code (`src/main.npk`)
 
-```aria
+```nitpick
 extern "math_wrapper" {
     func:aria_sqrt = float64(float64:x);
 }
@@ -117,7 +115,7 @@ flags = ["-fPIC", "-O2"]
 
 [target.main]
 type = "binary"
-sources = ["src/main.aria"]
+sources = ["src/main.npk"]
 deps = ["math_wrapper"]
 link_libraries = ["math_wrapper", "m"]
 link_paths = [".aria_make/build"]
@@ -142,7 +140,7 @@ version = "0.1.0"          # Semantic version
 
 ```ini
 [compiler]
-path = "/path/to/ariac"    # Aria compiler path
+path = "/path/to/npkc"    # Aria compiler path
 ```
 
 ### Target Types
@@ -152,7 +150,7 @@ path = "/path/to/ariac"    # Aria compiler path
 ```ini
 [target.myapp]
 type = "binary"
-sources = ["src/*.aria", "lib/utils.aria"]  # Supports globs
+sources = ["src/*.npk", "lib/utils.npk"]  # Supports globs
 deps = ["libname"]                           # Other targets to build first
 flags = ["-O2", "-g"]                       # Compiler flags
 link_libraries = ["m", "pthread"]           # Libraries to link (-l)
@@ -276,7 +274,7 @@ make
 
 # Try example project
 cd ../test_project
-../build/aria_make
+../build/npkbld
 ```
 
 ## Technical Notes
@@ -304,9 +302,9 @@ Copyright © 2025-2026
 
 ## Related Projects
 
-- **ariac** - Aria compiler
+- **npkc** - Nitpick compiler (was ariac)
 - **aria_utils** - Shared utilities (aglob, etc.)
-- **aria-pkg** - Package manager
+- **npkpkg** - Package manager (was aria-pkg)
 
 ---
 
